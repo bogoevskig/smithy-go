@@ -60,6 +60,7 @@ func ParseHTTPDate(value string) (time.Time, error) {
 		httpDateFormatSingleDigitDayTwoDigitYear,
 		time.RFC850,
 		time.ANSIC,
+		time.RFC1123,
 	)
 }
 

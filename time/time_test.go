@@ -151,6 +151,10 @@ func TestParseHTTPDate(t *testing.T) {
 			date:   "Thu, 05 Feb 21 11:04:03 GMT",
 			expect: time.Date(2021, 2, 5, 11, 04, 03, 0, time.UTC),
 		},
+		"RFC1123": {
+			date:   "Fri, 15 Feb 2021 19:12:15 UTC",
+			expect: time.Date(2021, 2, 15, 19, 12, 15, 0, time.UTC),
+		},
 	}
 
 	for name, tt := range cases {
@@ -165,7 +169,7 @@ func TestParseHTTPDate(t *testing.T) {
 			if result.IsZero() {
 				t.Fatalf("expected non-zero timestamp")
 			}
-			if tt.expect != result {
+			if !tt.expect.Equal(result) {
 				t.Fatalf("expected %q, got %q", tt.expect, result)
 			}
 		})
